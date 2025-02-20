@@ -1,3 +1,4 @@
-@import "./color.scss";
-@import "./navbar";
-@import "./home/home.scss";
+@use "./color";
+@use "./typography.scss";
+@use "./navbar";
+@use "./home/home";

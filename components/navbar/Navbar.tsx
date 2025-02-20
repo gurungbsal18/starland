@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { ThemeSwitch } from "../theme-switch";
 
 interface menuItemsProps {
   id: number;
@@ -55,6 +56,7 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+        <ThemeSwitch />
       </div>
     </div>
   );
