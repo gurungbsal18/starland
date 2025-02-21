@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { ThemeSwitch } from "../theme-switch";
+import { Button } from "@heroui/button";
 
 interface menuItemsProps {
   id: number;
@@ -37,10 +38,15 @@ export default function Navbar() {
   const Logo = require("../../public/STARLAND_Logo.svg");
 
   const [active, setActive] = useState("");
+  const [mobileNav, setMobileNav] = useState(false);
+
+  const mobileMenuToggle = () => {
+    setMobileNav(!mobileNav);
+  };
 
   return (
     <div className="bg-primary">
-      <div className="container mx-auto py-2 flex justify-between items-center">
+      <div className="container mx-auto py-2 flex justify-between items-center hidden lg:block">
         <Image alt="STARLAND Logo" src={Logo} height={50} />
 
         <ul className="flex gap-4 items-center text-white">
@@ -57,6 +63,32 @@ export default function Navbar() {
           ))}
         </ul>
         <ThemeSwitch />
+      </div>
+
+      <div className="block lg:hidden">
+        <div className="flex justify-between items-center container py-3 relative">
+          <Image alt="STARLAND Logo" src={Logo} height={50} />
+          <Button onPress={mobileMenuToggle}>
+            {mobileNav ? "Close" : "Open"}
+          </Button>
+        </div>
+        {mobileNav ? (
+          <ul className="flex flex-col h-screen justify-center items-center gap-32 text-white absolute top-13 left-0 w-full bg-primary z-20">
+            {menuItems.map((list) => (
+              <li key={list.id} className="text-2xl">
+                <Link
+                  href={list.href}
+                  className={`${active === list.href ? "secondary" : ""}`}
+                  onClick={() => setActive(list.href)}
+                >
+                  {list.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

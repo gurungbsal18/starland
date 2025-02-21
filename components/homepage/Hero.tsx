@@ -18,15 +18,15 @@ export default function Hero() {
           height={251}
         />
 
-        <h1 className="text-8xl text-center">{heroTitle}</h1>
-        <p className="w-1/3">{heroSubtitle}</p>
+        <h1 className="text-4xl lg:text-8xl text-center">{heroTitle}</h1>
+        <p className="w-full lg:w-1/3">{heroSubtitle}</p>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <Button color="secondary" className="w-1/3">
+        <Button color="secondary" className="w-full lg:w-1/3 text-black">
           Explore All Jobs
         </Button>
-        <div className="flex gap-2 items-center w-1/3 mt-3">
-          <Input label="search" size="sm" />
+        <div className="flex gap-2 items-center w-full lg:w-1/3 mt-3">
+          <Input size="sm" label="Search jobs" />
           <Button radius="sm">Search</Button>
         </div>
       </div>
