@@ -18,7 +18,7 @@ export default function Hero() {
           height={251}
         />
 
-        <h1 className="text-4xl lg:text-8xl text-center">{heroTitle}</h1>
+        <h1 className="text-4xl lg:text-7xl text-center">{heroTitle}</h1>
         <p className="w-full lg:w-1/3">{heroSubtitle}</p>
       </div>
       <div className="flex flex-col items-center justify-center">
