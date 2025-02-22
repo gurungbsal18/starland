@@ -5,7 +5,7 @@ import { FaPhone } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <div className="mt-32">
+    <div className="mt-32 footer">
       <div className="bg-primary">
         <div className="container py-16">
           <div className="text-white text-center lg:text-left flex flex-col justify-center items-center gap-4">
@@ -14,6 +14,7 @@ export default function Footer() {
               alt="starland logo"
               width={400}
               height={400}
+              className="logo-image"
             />
             <p className="flex gap-1 items-center">
               <FaPhone />
