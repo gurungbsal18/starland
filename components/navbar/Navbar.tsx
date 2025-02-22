@@ -2,8 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { ThemeSwitch } from "../theme-switch";
+
 import { Button } from "@heroui/button";
+import { ThemeSwitch } from "../theme-switch";
 
 interface menuItemsProps {
   id: number;
