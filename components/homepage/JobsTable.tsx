@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableHeader,
@@ -10,6 +10,9 @@ import {
 } from "@heroui/table";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
+import JobsData from "../data/JobsData";
+import { IoIosCheckmarkCircle } from "react-icons/io";
+import { MdCancel } from "react-icons/md";
 
 export default function JobsTable(props: { title: string }) {
   return (
@@ -35,27 +38,39 @@ export default function JobsTable(props: { title: string }) {
           <TableColumn>POSITION</TableColumn>
           <TableColumn>TOTAL HIRING</TableColumn>
           <TableColumn>SALARY</TableColumn>
-          <TableColumn>AVAIBILITY</TableColumn>
+          <TableColumn>STATUS</TableColumn>
           <TableColumn>ACTION</TableColumn>
-          <TableColumn>{""}</TableColumn>
         </TableHeader>
         <TableBody>
-          <TableRow key="1">
-            <TableCell>Software Engineer I</TableCell>
-            <TableCell>2</TableCell>
-            <TableCell>NPR 60000</TableCell>
-            <TableCell>Closed</TableCell>
-            <TableCell>View Detail</TableCell>
-            <TableCell>Apply</TableCell>
-          </TableRow>
-          <TableRow key="2">
-            <TableCell>Technical Lead</TableCell>
-            <TableCell>2</TableCell>
-            <TableCell>NPR 120000</TableCell>
-            <TableCell>1 Available</TableCell>
-            <TableCell>View Detail</TableCell>
-            <TableCell>Apply</TableCell>
-          </TableRow>
+          {JobsData.map((list: any) => (
+            <TableRow key={list.id}>
+              <TableCell>{list.position}</TableCell>
+              <TableCell>{list.totalHiring}</TableCell>
+              <TableCell>{list.salary}</TableCell>
+              <TableCell className="">
+                <span
+                  className={`flex items-center gap-2 ${
+                    list.status === "Close" ? "text-danger" : "text-green-700"
+                  }`}
+                >
+                  {list.status === "Close" ? (
+                    <MdCancel />
+                  ) : (
+                    <IoIosCheckmarkCircle />
+                  )}
+                  {list.status}
+                </span>
+              </TableCell>
+              <TableCell className="flex gap-2 items-center">
+                <Button size="sm" radius="sm">
+                  View Detail
+                </Button>
+                <Button size="sm" radius="sm" color="primary">
+                  Apply
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>
