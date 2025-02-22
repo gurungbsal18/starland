@@ -1,4 +1,5 @@
 import Hero from "@/components/homepage/Hero";
+import JobsTable from "@/components/homepage/JobsTable";
 import WhyUsBanner from "@/components/homepage/WhyUsBanner";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
@@ -8,9 +9,10 @@ import React from "react";
 export default function HomePage() {
   return (
     <>
-      <div className="container">
+      <div className="">
         <Hero />
-        <WhyUsBanner />
+        <JobsTable title={"Recent open positions"} />
+        <WhyUsBanner title={"Why choose us?"} />
       </div>
     </>
   );

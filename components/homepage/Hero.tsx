@@ -9,8 +9,8 @@ export default function Hero() {
     "Unlock your potential with the best opportunities tailored just for you.Start your journey with us and land the career you deserve.";
 
   return (
-    <>
-      <div className="text-center flex flex-col items-center pt-12 pb-8 gap-8">
+    <div className="hero">
+      <div className="container text-center flex flex-col items-center pt-12 pb-8 gap-8">
         <Image
           src="/home-search-image.svg"
           alt="starland"
@@ -27,9 +27,11 @@ export default function Hero() {
         </Button>
         <div className="flex gap-2 items-center w-full lg:w-1/3 mt-3">
           <Input size="sm" label="Search jobs" />
-          <Button radius="sm">Search</Button>
+          <Button radius="sm" size="lg" color="primary">
+            Search
+          </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
