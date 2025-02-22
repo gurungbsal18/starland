@@ -61,8 +61,8 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          <ThemeSwitch />
         </ul>
-        <ThemeSwitch />
       </div>
 
       <div className="block lg:hidden">
