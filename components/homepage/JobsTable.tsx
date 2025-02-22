@@ -18,7 +18,7 @@ export default function JobsTable(props: { title: string }) {
   return (
     <div className="mt-32">
       <div className="grid grid-cols-1 lg:grid-cols-12 tems-center mb-5 gap-4 lg:gap-32">
-        <h4 className="col-span-1 lg:col-span-6 primary text-2xl lg:text-4xl font-bold">
+        <h4 className="col-span-1 lg:col-span-6 primary text-3xl lg:text-4xl text-center lg:text-start font-bold">
           {props.title}
         </h4>
         <div className="flex gap-2 items-center col-span-1 lg:col-span-6">

@@ -1,5 +1,7 @@
 .footer {
   .logo-image {
+    width: auto;
+    height: auto;
     @media (max-width: 576px) {
       width: 250px;
       height: auto;
