@@ -1,35 +1,28 @@
 import Image from "next/image";
 import React from "react";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhone } from "react-icons/fa6";
 
 export default function Footer() {
   return (
     <div className="mt-32">
       <div className="bg-primary">
         <div className="container py-16">
-          <div className="flex flex-col lg:flex-row justify-center lg:justify-around items-center gap-4">
-            <div className="">
-              <Image
-                src="/STARLAND_Logo.svg"
-                alt="starland logo"
-                width={200}
-                height={200}
-              />
-            </div>
-
-            <div className="text-white text-center lg:text-left">
-              <p>+977 98411234567890</p>
-              <p>Kathmandu, Nepal</p>
-            </div>
-
-            <div className="text-white text-center lg:text-left">
-              <p className="font-bold">Company</p>
-              <ul>
-                <li>Recent Jobs</li>
-                <li>About us</li>
-                <li>Meet our team</li>
-                <li>Terms and condition</li>
-              </ul>
-            </div>
+          <div className="text-white text-center lg:text-left flex flex-col justify-center items-center gap-4">
+            <Image
+              src="/STARLAND_Logo.svg"
+              alt="starland logo"
+              width={400}
+              height={400}
+            />
+            <p className="flex gap-1 items-center">
+              <FaPhone />
+              +977 98411234567890
+            </p>
+            <p className="flex gap-1 items-center">
+              <FaLocationDot />
+              Kathmandu, Nepal
+            </p>
           </div>
         </div>
       </div>
