@@ -24,6 +24,13 @@ import { MdCancel } from "react-icons/md";
 
 export default function JobsTable(props: { title: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [selectedJob, setSelectedJob] = useState<any>();
+
+  const handleViewDetail = (job: any) => {
+    setSelectedJob(job);
+    onOpen();
+  };
+
   return (
     <>
       <div className="mt-32">
@@ -54,7 +61,13 @@ export default function JobsTable(props: { title: string }) {
           <TableBody>
             {JobsData.map((list: any) => (
               <TableRow key={list.id}>
-                <TableCell>{list.position}</TableCell>
+                <TableCell
+                  onClick={() => handleViewDetail(list)}
+                  className="text-primary font-bold"
+                  style={{ cursor: "pointer" }}
+                >
+                  {list.position}
+                </TableCell>
                 <TableCell>{list.totalHiring}</TableCell>
                 <TableCell>{list.salary}</TableCell>
                 <TableCell className="">
@@ -72,7 +85,11 @@ export default function JobsTable(props: { title: string }) {
                   </span>
                 </TableCell>
                 <TableCell className="flex gap-2 items-center">
-                  <Button size="sm" radius="sm" onPress={onOpen}>
+                  <Button
+                    size="sm"
+                    radius="sm"
+                    onPress={() => handleViewDetail(list)}
+                  >
                     View Detail
                   </Button>
                   <Button size="sm" radius="sm" color="primary">
@@ -85,16 +102,40 @@ export default function JobsTable(props: { title: string }) {
         </Table>
       </div>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader>Position Detail</ModalHeader>
-              <ModalBody>Body content</ModalBody>
-              <ModalFooter>
-                <Button onPress={onClose}>Close</Button>
-                <Button color="primary">Apply Now</Button>
-              </ModalFooter>
+              {selectedJob && (
+                <>
+                  <ModalHeader>Title: {selectedJob.position}</ModalHeader>
+                  <ModalBody className="font-bold">
+                    Salary: {selectedJob.salary}
+                  </ModalBody>
+                  <ModalBody className="job-modal-content">
+                    <p className="font-bold">Description:</p>
+                    {selectedJob.description && (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: selectedJob.description,
+                        }}
+                      />
+                    )}
+                    <p className="font-bold">Responsibility</p>
+                    {selectedJob.responsibility && (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: selectedJob.responsibility,
+                        }}
+                        className="job-responsibility"
+                      />
+                    )}
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button onPress={onClose}>Close</Button>
+                  </ModalFooter>
+                </>
+              )}
             </>
           )}
         </ModalContent>

@@ -1,0 +1,13 @@
+.job-responsibility {
+  padding: 0 1rem;
+  ul {
+    li {
+      list-style: decimal;
+    }
+  }
+}
+
+.job-modal-content {
+  max-height: 600px;
+  overflow-y: auto;
+}
