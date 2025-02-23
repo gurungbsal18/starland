@@ -25,11 +25,11 @@ import { MdCancel } from "react-icons/md";
 export default function JobsTable(props: { title: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedJob, setSelectedJob] = useState<any>();
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleViewDetail = (job: any) => {
-    setSelectedJob(job);
-    onOpen();
-  };
+  const filterJobs = JobsData.filter((job) =>
+    job.position.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   return (
     <>
@@ -44,13 +44,15 @@ export default function JobsTable(props: { title: string }) {
               type="search"
               className="w-full"
               size="sm"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <Button size="lg" radius="sm" color="primary">
               Search
             </Button>
           </div>
         </div>
-        <Table aria-label="Example static collection table">
+        <Table>
           <TableHeader>
             <TableColumn>POSITION</TableColumn>
             <TableColumn>TOTAL HIRING</TableColumn>
@@ -58,46 +60,27 @@ export default function JobsTable(props: { title: string }) {
             <TableColumn>STATUS</TableColumn>
             <TableColumn>ACTION</TableColumn>
           </TableHeader>
+
           <TableBody>
-            {JobsData.map((list: any) => (
-              <TableRow key={list.id}>
-                <TableCell
-                  onClick={() => handleViewDetail(list)}
-                  className="text-primary font-bold"
-                  style={{ cursor: "pointer" }}
-                >
-                  {list.position}
-                </TableCell>
-                <TableCell>{list.totalHiring}</TableCell>
-                <TableCell>{list.salary}</TableCell>
-                <TableCell className="">
-                  <span
-                    className={`flex items-center gap-2 ${
-                      list.status === "Close" ? "text-danger" : "text-green-700"
-                    }`}
-                  >
-                    {list.status === "Close" ? (
-                      <MdCancel />
-                    ) : (
-                      <IoIosCheckmarkCircle />
-                    )}
-                    {list.status}
-                  </span>
-                </TableCell>
-                <TableCell className="flex gap-2 items-center">
-                  <Button
-                    size="sm"
-                    radius="sm"
-                    onPress={() => handleViewDetail(list)}
-                  >
-                    View Detail
-                  </Button>
-                  <Button size="sm" radius="sm" color="primary">
-                    Apply
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {filterJobs.length > 0 ? (
+              filterJobs.map((job) => (
+                <TableRow key={job.id}>
+                  <TableCell>{job.position}</TableCell>
+                  <TableCell>{job.totalHiring}</TableCell>
+                  <TableCell>{job.salary}</TableCell>
+                  <TableCell>{job.status}</TableCell>
+                  <TableCell>
+                    <Button>Apply</Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <>
+                <TableRow>
+                  <TableCell>No Data</TableCell>
+                </TableRow>
+              </>
+            )}
           </TableBody>
         </Table>
       </div>
