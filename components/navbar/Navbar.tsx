@@ -48,7 +48,9 @@ export default function Navbar() {
   return (
     <div className="bg-primary">
       <div className="container mx-auto py-2 lg:flex justify-between items-center hidden">
-        <Image alt="STARLAND Logo" src={Logo} height={50} />
+        <Link href="/">
+          <Image alt="STARLAND Logo" src={Logo} height={50} />
+        </Link>
 
         <ul className="flex gap-4 items-center text-white">
           {menuItems.map((list) => (
