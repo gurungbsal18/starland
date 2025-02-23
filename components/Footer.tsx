@@ -33,7 +33,7 @@ export default function Footer() {
           All content and photography within our website is copyright & may not
           be reproduced without our permission.
         </p>
-        <p className="text-xs">Develop By: IT Sansaar</p>
+        {/* <p className="text-xs">Develop By: Bishal Gurung</p> */}
       </div>
     </div>
   );
