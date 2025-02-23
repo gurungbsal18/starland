@@ -4,7 +4,7 @@ const JobsData = [
     position: "Software Engineer I",
     totalHiring: 2,
     salary: "60000",
-    status: "Close",
+    status: "Available",
     description:
       "As a Senior Software Engineer (React), you will be responsible for developing and maintaining efficient and scalable web applications using React.js.Your main activities will include providing daily standups to clients, participating in and providing insights in various meetings with managers, clients, Product Owners, and Project Managers, performing updates to projects based on client or product team requirements, being an integral part of the Project kickoff meeting, collaborating with other teams to meet project goals and deadlines, and optionally upskilling in front-end related frameworks.Your expertise in Node.js, React.js, and collaboration with cross-functional teams will contribute to the successful delivery of projects and the achievement of project objectives.",
     responsibility: `
@@ -32,7 +32,7 @@ const JobsData = [
     position: "Technical Lead",
     totalHiring: 2,
     salary: "120000",
-    status: "Available",
+    status: "Close",
   },
 ];
 
