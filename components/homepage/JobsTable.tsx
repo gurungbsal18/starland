@@ -26,10 +26,16 @@ export default function JobsTable(props: { title: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedJob, setSelectedJob] = useState<any>();
   const [searchQuery, setSearchQuery] = useState("");
+  const [jobStatus, setStatus] = useState();
 
   const filterJobs = JobsData.filter((job) =>
     job.position.toLowerCase().includes(searchQuery.toLowerCase()),
   );
+
+  const handleModal = (job: any) => {
+    setSelectedJob(job);
+    onOpen();
+  };
 
   return (
     <>
@@ -40,7 +46,7 @@ export default function JobsTable(props: { title: string }) {
           </h4>
           <div className="flex gap-2 items-center col-span-1 lg:col-span-6">
             <Input
-              label="Search jobs by title"
+              label="Search jobs by position"
               type="search"
               className="w-full"
               size="sm"
@@ -65,12 +71,33 @@ export default function JobsTable(props: { title: string }) {
             {filterJobs.length > 0 ? (
               filterJobs.map((job) => (
                 <TableRow key={job.id}>
-                  <TableCell>{job.position}</TableCell>
-                  <TableCell>{job.totalHiring}</TableCell>
-                  <TableCell>{job.salary}</TableCell>
-                  <TableCell>{job.status}</TableCell>
+                  <TableCell
+                    onClick={() => handleModal(job)}
+                    className="cursor-pointer text-primary font-bold"
+                  >
+                    {job.position}
+                  </TableCell>
+                  <TableCell>{job.totalHiring} seat</TableCell>
+                  <TableCell>NPR {job.salary}</TableCell>
                   <TableCell>
-                    <Button>Apply</Button>
+                    <span
+                      className={`flex items-center gap-1 ${job.status === "Close" ? "text-danger" : "text-green-700"}`}
+                    >
+                      {job.status === "Close" ? (
+                        <MdCancel />
+                      ) : (
+                        <IoIosCheckmarkCircle />
+                      )}{" "}
+                      {job.status}
+                    </span>
+                  </TableCell>
+                  <TableCell className="flex gap-2">
+                    <Button size="sm" onPress={() => handleModal(job)}>
+                      View Detail
+                    </Button>
+                    <Button size="sm" color="primary">
+                      Apply
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))
@@ -85,15 +112,24 @@ export default function JobsTable(props: { title: string }) {
         </Table>
       </div>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        size="4xl"
+        backdrop="blur"
+      >
         <ModalContent>
           {(onClose) => (
             <>
               {selectedJob && (
                 <>
-                  <ModalHeader>Title: {selectedJob.position}</ModalHeader>
+                  <ModalHeader>
+                    <p className="primary text-xl font-bold">
+                      Position: {selectedJob.position}
+                    </p>
+                  </ModalHeader>
                   <ModalBody className="font-bold">
-                    Salary: {selectedJob.salary}
+                    Salary: NPR {selectedJob.salary}
                   </ModalBody>
                   <ModalBody className="job-modal-content">
                     <p className="font-bold">Description:</p>

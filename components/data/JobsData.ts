@@ -30,7 +30,7 @@ const JobsData = [
   {
     id: 2,
     position: "Technical Lead",
-    totalHiring: 2,
+    totalHiring: 1,
     salary: "120000",
     status: "Close",
   },
