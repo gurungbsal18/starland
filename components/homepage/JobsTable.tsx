@@ -24,9 +24,8 @@ import { MdCancel } from "react-icons/md";
 
 export default function JobsTable(props: { title: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [selectedJob, setSelectedJob] = useState<any>();
+  const [selectedJob, setSelectedJob] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [jobStatus, setStatus] = useState();
 
   const filterJobs = JobsData.filter((job) =>
     job.position.toLowerCase().includes(searchQuery.toLowerCase()),

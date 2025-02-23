@@ -1,6 +1,7 @@
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function Hero() {
@@ -22,9 +23,11 @@ export default function Hero() {
         <p className="w-full lg:w-1/3">{heroSubtitle}</p>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <Button color="secondary" className="w-full lg:w-1/3 text-black">
-          Explore All Jobs
-        </Button>
+        <Link href="/jobs" className="w-full lg:w-1/3 text-black">
+          <Button color="secondary" className="w-full">
+            Explore All Jobs
+          </Button>
+        </Link>
         <div className="flex gap-2 items-center w-full lg:w-1/3 mt-3">
           <Input size="sm" label="Search jobs" />
           <Button radius="sm" size="lg" color="primary">
