@@ -8,22 +8,16 @@ import {
   TableRow,
   TableCell,
 } from "@heroui/table";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  useDisclosure,
-} from "@heroui/modal";
+
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import JobsData from "../data/JobsData";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
+import JobsModal from "../modal/JobsModal";
 
 export default function JobsTable(props: { title: string }) {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -33,7 +27,7 @@ export default function JobsTable(props: { title: string }) {
 
   const handleModal = (job: any) => {
     setSelectedJob(job);
-    onOpen();
+    setIsOpen(true);
   };
 
   return (
@@ -111,53 +105,11 @@ export default function JobsTable(props: { title: string }) {
         </Table>
       </div>
 
-      <Modal
+      <JobsModal
         isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        size="4xl"
-        backdrop="blur"
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              {selectedJob && (
-                <>
-                  <ModalHeader>
-                    <p className="primary text-xl font-bold">
-                      Position: {selectedJob.position}
-                    </p>
-                  </ModalHeader>
-                  <ModalBody className="font-bold">
-                    Salary: NPR {selectedJob.salary}
-                  </ModalBody>
-                  <ModalBody className="job-modal-content">
-                    <p className="font-bold">Description:</p>
-                    {selectedJob.description && (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: selectedJob.description,
-                        }}
-                      />
-                    )}
-                    <p className="font-bold">Responsibility</p>
-                    {selectedJob.responsibility && (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: selectedJob.responsibility,
-                        }}
-                        className="job-responsibility"
-                      />
-                    )}
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button onPress={onClose}>Close</Button>
-                  </ModalFooter>
-                </>
-              )}
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+        onClose={() => setIsOpen(false)}
+        job={selectedJob}
+      />
     </>
   );
 }
