@@ -70,7 +70,9 @@ export default function Navbar() {
 
       <div className="block lg:hidden">
         <div className="flex justify-between items-center container py-3 relative">
-          <Image alt="STARLAND Logo" src={Logo} height={50} />
+          <Link href="/">
+            <Image alt="STARLAND Logo" src={Logo} height={50} />
+          </Link>
           <span onClick={mobileMenuToggle} className="text-white text-4xl">
             {mobileNav ? <IoMdClose /> : <AiOutlineMenu />}
           </span>
